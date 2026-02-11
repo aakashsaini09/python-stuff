@@ -1,4 +1,4 @@
-
+import random
 # count positive numbers in array/list
 nums = [1, -2, 3, -4, 5, -6, 7, -8, 9,  10]
 positive_num_count = 0
@@ -34,3 +34,26 @@ reversed_str = ""
 for char in inp_str:
     reversed_str = char + reversed_str
 print("revrersed string: ", reversed_str)
+
+
+# factorial of a number
+num = int(input("Enter your number: "))
+factorial = 1
+while num > 0:
+    factorial = factorial * num
+    num = num - 1
+
+print(factorial)
+
+# keep asking input until user guess the correct number (1-10)
+sec_num = random.randint(1, 11)
+while True:
+    guess = int(input("Guess  the number between 1-10: "))
+    if guess == sec_num:
+        print("You win...")
+        break
+    elif guess > sec_num:
+        print("Try smaller number")
+    else:
+        print("Try bigger number")
+    
