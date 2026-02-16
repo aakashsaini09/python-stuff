@@ -2,14 +2,15 @@ import sqlite3
 conn = sqlite3.connect("yt_manager.db")
 cursor = conn.cursor()
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS videos (
-                id INTEGER PRIMARY KEY
-                name TEXT NOT NULL
+    CREATE TABLE IF NOT EXISTS videos(
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
                 time TEXT NOT NULL
         )
 ''')
 def list_videos():
     cursor.execute("SELECT * FROM videos")
+    print("*" * 50)
     for row in cursor.fetchall():
         print(row)
 def add_videos(name, time):
@@ -35,20 +36,24 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice == '1':
-            list_videos(videos)
+            list_videos()
         elif choice == '2':
             name = input("Enter the video name: ")
             time = input("Enter the video time: ")
             add_videos(name, time)
-
+            print("Video added.")
         elif choice == '3':
+            list_videos()
             vid_id = input("Enter video ID to update: ")
             name = input("Enter the video name: ")
             time = input("Enter the video time: ")
             update_videos(vid_id, name, time)
+            print("Video updated.")
         elif choice == '4':
-            vid_id = input("Enter video ID to update: ")
+            list_videos()
+            vid_id = input("Enter video ID to delete: ")
             delete_videos(vid_id)
+            print("Video deleted.")
         elif choice == '5':
             break
         else:
