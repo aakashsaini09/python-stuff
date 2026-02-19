@@ -1,2 +1,4 @@
 venv_clean
+venv
 api_secrets
+.env

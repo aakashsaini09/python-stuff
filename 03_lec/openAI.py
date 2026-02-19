@@ -1,5 +1,20 @@
-import openai
-openai.api_key = ""
-prompt = "Say this is a test"
-response = openai.completions.create(model="davinci-002", prompt=prompt, max_tokens=6)
-print(response)
+from openai import OpenAI
+client = OpenAI(api_key="")
+
+response = client.responses.create(
+    model="gpt-4.1-mini",
+    input="Tell me a programming joke"
+)
+
+print(response.output[0].content[0])
+
+# from openai import OpenAI
+    
+# client = OpenAI(api_key="YOUR_NEW_KEY")
+
+# response = client.responses.create(
+#     model="gpt-4.1-mini",
+#     input="Say this is a test"
+# )
+
+# print(response.output[0].content[0].text)
