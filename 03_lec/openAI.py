@@ -1,15 +1,24 @@
 from openai import OpenAI
 client = OpenAI(api_key="")
 
-response = client.responses.create(
-    model="gpt-4.1-mini",
-    input="Tell me a programming joke"
-)
+conversation = []
+print("ChatBot Started. Enter 'exit' to quit\n")
+while True:
+    user_input = input("You: ")
+    if user_input == "exit":
+        break;
+    conversation.append({"role": "user", "content": user_input})
+    response = client.responses.create(
+        model="gpt-4.1-mini",
+        input=user_input
+    )
 
-print(response.output[0].content[0])
+    res = (response.output[0].content[0].text)
+    print("Bot: ", res)
+    conversation.append({"role": "assistant", "content": res})
 
 # from openai import OpenAI
-    
+
 # client = OpenAI(api_key="YOUR_NEW_KEY")
 
 # response = client.responses.create(
