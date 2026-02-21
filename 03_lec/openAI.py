@@ -1,5 +1,5 @@
 from openai import OpenAI
-client = OpenAI('')
+client = OpenAI(api_key="")
 
 conversation = []
 print("ChatBot Started. Enter 'exit' to quit\n")
@@ -8,12 +8,12 @@ while True:
     if user_input == "exit":
         break;
     conversation.append({"role": "user", "content": user_input})
-    res = client.responses.create(
+    response = client.responses.create(
         model="gpt-4.1-mini",
         input=user_input
     )
 
-    res = (res.output[0].content[0].text)
+    res = (response.output[0].content[0].text)
     print("Bot: ", res)
     conversation.append({"role": "assistant", "content": res})
 
