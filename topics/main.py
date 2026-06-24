@@ -36,7 +36,7 @@ class Solution:
                     if(j == i):
                         if(ans < int(len(temp))):
                             ans = len(temp)
-                        temp = ''
+                        temp = temp[temp.index(i)+1:]
                         continue
             temp = temp+i
             print("ans: ", ans)
