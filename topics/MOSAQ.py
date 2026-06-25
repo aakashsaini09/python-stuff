@@ -8,13 +8,22 @@ class Solution:
             num = 0
             return num
         elif(len(arr) == 1):
-            num = arr[1]
+            num = arr[0]
             return num
         else:
             print("array is bigger then 1")
-            
-
+            le = len(arr)
+            if le % 2 == 0:
+                print("even")
+                temp = le / 2
+                f: float = arr[int(temp - 1)] + arr[int(temp)]
+                g: float = f / 2
+                return g
+            else:
+                center: float = arr[len(arr) // 2]
+                return center
         return num
+    
     def mergeArray(self, a1: List[int], a2: List[int]) -> List[int]:
         ans = []
         i, j = 0, 0
@@ -30,5 +39,5 @@ class Solution:
         return ans
     
 sol = Solution()
-ans = sol.findMedianSortedArrays([1,3], [2,4])
-# print(ans)
+ans = sol.findMedianSortedArrays([], [5])
+print(ans)
