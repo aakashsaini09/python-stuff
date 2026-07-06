@@ -28,3 +28,28 @@ class Solution:
 c = Solution()
 res = c.convert("thisistheway", 3)
 print("res: ", res)
+class Solution:
+    def reverse(self, x: int) -> int:
+        res = ''
+        if x < 0:
+            num = str(-x)
+        else: num = str(x)
+        i = len(num)
+        if(num == 1):
+            return x
+        while(i != 0):
+            res = res + num[i - 1];
+            i = i - 1
+        a = int(res)
+        check = self.is_signed_32bit(x)
+        print("check: ", check)
+        if(check == False):
+            return 0
+        if(x < 0):
+            return -a
+        return a
+    def is_signed_32bit(self, n):
+        return -2**31 <= n < 2**31 - 1
+c = Solution()
+res = c.reverse(1534236469)
+print(res)
