@@ -1,7 +1,7 @@
 # **************************************#8 String to Integer****************************************************
 class Solution:
     def myAtoi(self, s: str) -> int:
-        a = s.replace(" ", "")
+        a = s.lstrip()
         temp = ''
         ans = ''
         i = len(a)
@@ -46,7 +46,7 @@ class Solution:
     
 
     def sol(self, s: str) -> int:
-        a = s.replace(" ", "")
+        a = s.lstrip()
         ans = ''
         i = 0
         if(len(a) == 1):
@@ -63,8 +63,13 @@ class Solution:
                 if(temp[i].isalpha()):
                     i = i + 1
                     continue
-                ans = ans + temp[i]
-                i = i + 1
+                if(temp[i].isspace()):
+                    return 0
+                if(temp[i].isdigit()):
+                    ans = ans + temp[i]
+                    i = i + 1
+                else:
+                    return 0
             # res = self.rev(ans)
             temp = ''
             i = len(ans)
@@ -87,8 +92,13 @@ class Solution:
                 if(temp[i].isalpha()):
                     i = i + 1
                     continue
-                ans = ans + temp[i]
-                i = i + 1
+                if(temp[i].isspace()):
+                    return 0
+                if(temp[i].isdigit()):
+                    ans = ans + temp[i]
+                    i = i + 1
+                else:
+                    return 0
             # res = self.rev(ans)
             temp = ''
             i = len(ans)
@@ -98,12 +108,19 @@ class Solution:
             return int(temp)
         
         while(i != len(a)):
+            if(ans == '' and a[i] == '0'):
+                i = i + 1
+                continue
             if(a[i].isalpha()):
                 i = i + 1
                 continue
-            ans = ans + a[i]
-            i = i + 1
-        # res = self.rev(ans)
+            if(a[i].isspace()):
+                    return 0
+            if(a[i].isdigit()):
+                ans = ans + a[i]
+                i = i + 1
+            else:
+                return 0
         temp = ''
         i = len(ans)
         while(i != 0):
@@ -121,5 +138,5 @@ class Solution:
         return int(ab)
    
 a = Solution()
-result = a.sol("   -0043")
+result = a.sol("   0 43")
 print(type(result), result)
