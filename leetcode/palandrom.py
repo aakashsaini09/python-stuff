@@ -1,5 +1,7 @@
+from typing import List
+
 # 9th prob 
-class Solution2:
+class Solution1:
     def isPalindrome(self, x: int) -> bool:
         ans: bool = False
         a = str(x)
@@ -24,11 +26,37 @@ class Solution2:
             i = i - 1
         return ans
 
-
-class Solution:
+# 10th prob
+class Solution2:
     def isMatch(self, s: str, p: str) -> bool:
         ans = False
         return ans
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        start = 0
+        end = len(height) - 1
+        area = 0
+        print(start, end)
+        while(start < end):
+            dist = end - start
+            sec = height[start]
+            if(height[end] < height[start]):
+                sec = height[end]
+            temp = dist * sec
+            if(area < temp):
+                area = temp
+            # print("temp: ", temp, "area", area)
+            # print(start, " = ", height[start] ,  end, " = ", height[end])
+            if(height[start] > height[end]):
+                end = end - 1
+                continue
+            if(height[start] < height[end]):
+                start = start + 1
+                continue
+            if(height[start] == height[end]):
+                start = start + 1
+                continue
+        return area
 a = Solution()
-ans = a.isMatch("0")
+ans = a.maxArea([])
 print("Ans: ", ans)
