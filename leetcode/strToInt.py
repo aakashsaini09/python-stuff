@@ -46,97 +46,48 @@ class Solution:
     
 
     def sol(self, s: str) -> int:
-        a = s.lstrip()
-        ans = ''
+        if not s:
+            return 0
+        
+        # Constants for 32-bit signed integer range
+        INT_MAX = 2**31 - 1
+        INT_MIN = -2**31
+        
         i = 0
-        if(len(a) == 1):
-            return int(a)
-        if(a[0] == '-'):
-            if(len(a) == 2):
-                return int(a)
-            z = a.split('-', 1)
-            temp = z[1]
-            while(i != len(temp)):
-                if(ans == '' and temp[i] == '0'):
-                    i = i + 1
-                    continue
-                if(temp[i].isalpha()):
-                    i = i + 1
-                    continue
-                if(temp[i].isspace()):
-                    return 0
-                if(temp[i].isdigit()):
-                    ans = ans + temp[i]
-                    i = i + 1
-                else:
-                    return 0
-            # res = self.rev(ans)
-            temp = ''
-            i = len(ans)
-            while(i != 0):
-                temp = temp + ans[i - 1]
-                i = i - 1
-            i = int(temp)
-            r = i - i - i
-            return r
-        # *********************************************************************************
-        if(a[0] == '+'):
-            if(len(a) == 2):
-                return int(a)
-            z = a.split('+', 1)
-            temp = z[1]
-            while(i != len(temp)):
-                if(ans == '' and temp[i] == '0'):
-                    i = i + 1
-                    continue
-                if(temp[i].isalpha()):
-                    i = i + 1
-                    continue
-                if(temp[i].isspace()):
-                    return 0
-                if(temp[i].isdigit()):
-                    ans = ans + temp[i]
-                    i = i + 1
-                else:
-                    return 0
-            # res = self.rev(ans)
-            temp = ''
-            i = len(ans)
-            while(i != 0):
-                temp = temp + ans[i - 1]
-                i = i - 1
-            return int(temp)
+        n = len(s)
         
-        while(i != len(a)):
-            if(ans == '' and a[i] == '0'):
-                i = i + 1
-                continue
-            if(a[i].isalpha()):
-                i = i + 1
-                continue
-            if(a[i].isspace()):
-                    return 0
-            if(a[i].isdigit()):
-                ans = ans + a[i]
-                i = i + 1
-            else:
-                return 0
-        temp = ''
-        i = len(ans)
-        while(i != 0):
-            temp = temp + ans[i - 1]
-            i = i - 1
+        # Step 1: Skip leading whitespace
+        while i < n and s[i] == ' ':
+            i += 1
         
-        return int(temp)
-    def rev(self, val):
-        ab = ''
-        i = len(val)
-        while(i != 0):
-            ab = ab + val[i - 1]
-            i = i - 1
-        print("final ans: ", ab)
-        return int(ab)
+        # Check if we've reached the end
+        if i == n:
+            return 0
+        
+        # Step 2: Check for sign
+        sign = 1
+        if s[i] == '+':
+            i += 1
+        elif s[i] == '-':
+            sign = -1
+            i += 1
+        
+        # Step 3: Read digits and convert
+        res = 0
+        while i < n and s[i].isdigit():
+            digit = int(s[i])
+            res = res * 10 + digit
+            
+            if sign * res <= INT_MIN:
+                return INT_MIN
+            if sign * res >= INT_MAX:
+                return INT_MAX
+            
+            i += 1
+        
+        # Step 4: Apply sign and return
+        return res * sign
    
 a = Solution()
-result = a.sol("   0 43")
+result = a.sol("-11919730356x")
 print(type(result), result)
