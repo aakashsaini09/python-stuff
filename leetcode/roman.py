@@ -1,3 +1,4 @@
+from typing import List
 class Solution:
     def intToRoman(self, num: int) -> int:
         ans = ""
@@ -40,6 +41,22 @@ class Solution:
         #             ans = ans + current
         #     i = i + 1
 
+
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        fir = strs[0]
+        print("fir: ", fir)
+        l = 0
+        while(l != len(fir)):
+            print(fir[l])
+            for i in strs:
+                if(strs)
+            l = l + 1
+        # for i in l:
+        #     print("i: ", i)
+            # for j in strs:
+            #     print("J is: ", j)
+            #     if(j[i] == strs[0][i]):
+            #         print("match: ", j[i], str[0][i])
 a = Solution()
-ans = a.intToRoman(3749)
+ans = a.longestCommonPrefix(["flower", "flow", "flight"])
 print("Ans: ", ans)
