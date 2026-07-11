@@ -44,13 +44,21 @@ class Solution:
 
     def longestCommonPrefix(self, strs: List[str]) -> str:
         fir = strs[0]
-        print("fir: ", fir)
+        if(len(strs) == 0):
+            return ""
+        
+        if(len(strs) == 1):
+            return strs[0]
         l = 0
         while(l != len(fir)):
-            print(fir[l])
             for i in strs:
-                if(strs)
+                # print("i[l]: ", i[l], "fir[l]: ", fir[l], "i: ", i)
+                if(l >= len(i)):
+                    return fir[0:l]
+                if(i[l] != fir[l]):
+                    return fir[0:l]
             l = l + 1
+        return fir[0:l]
         # for i in l:
         #     print("i: ", i)
             # for j in strs:
@@ -58,5 +66,5 @@ class Solution:
             #     if(j[i] == strs[0][i]):
             #         print("match: ", j[i], str[0][i])
 a = Solution()
-ans = a.longestCommonPrefix(["flower", "flow", "flight"])
+ans = a.longestCommonPrefix(["ab","a"])
 print("Ans: ", ans)
