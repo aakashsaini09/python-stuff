@@ -1,9 +1,31 @@
 from typing import List
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
+        obj = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+        # i = 0
+        temp = []
+        if(len(str(digits))>3):
+            return []
+        for i in str(digits):
+            d = obj[i]
+            temp.append(d)
+        maxLen = len((temp[0]))
+        while maxLen != 0:
+            for i in temp:
+                pass
+            maxLen = maxLen - 1
         return []
 
 
 c = Solution()
-ans = c.letterCombinations(21)
+ans = c.letterCombinations(234)
 print(ans)
